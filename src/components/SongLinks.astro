@@ -1,0 +1,19 @@
+---
+const { dataSong } = Astro.props;
+const { song } = dataSong;
+const { id, data } = song;
+const { name, linksPlatform } = data;
+---
+
+<section class="container flex flex-col items-center">
+  {
+    Object.entries(linksPlatform).map(([key, value]) => (
+      <a
+        href={value as string}
+        class="w-full h-fit max-w-64 border border-white rounded-3xl px-4 py-2 mb-8 text-white text-center"
+      >
+        {`${key} | ${name}`}
+      </a>
+    ))
+  }
+</section>

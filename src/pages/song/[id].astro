@@ -1,0 +1,20 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+import SongLinks from "../../components/SongLinks.astro";
+
+export async function getStaticPaths() {
+  const releases = await getCollection("releases");
+
+  return releases.map((song) => ({
+    params: { id: song.id },
+    props: { song },
+  }));
+}
+const song = Astro.props;
+---
+
+<Layout title="canciones">
+  <SongLinks dataSong={song} />
+</Layout>
